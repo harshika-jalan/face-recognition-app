@@ -27,7 +27,7 @@ class App extends Component {
   }
   onButtonSubmit = () => {
     this.setState({ imgUrl: this.state.input });
-    app.models.predict(Clarifai.FACE_DETECT_MODEL,'components/Logo/brain.png').then(
+    app.models.predict(Clarifai.FACE_DETECT_MODEL, this.state.input).then(
       function (response) {
         // response data fetch from FACE_DETECT_MODEL
         console.log(response);
