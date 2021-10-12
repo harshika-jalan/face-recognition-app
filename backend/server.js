@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt-nodejs');
+const cors = require('cors');
 
 
 const database = {
@@ -24,6 +25,9 @@ const database = {
     }
   ]
 }
+app.use(bodyParser.json());
+app.use(cors());
+
 app.get('/', (req, res) => {
   res.send(database.users);
 })
@@ -51,7 +55,7 @@ app.get('/profile/:id', (req, res) => {
   }
 })
 
-app.post('/image', (req, res) => {
+app.put('/image', (req, res) => {
   const { id } = req.params;
   const found = false;
   database.users.forEach(user => {
